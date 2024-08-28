@@ -20,6 +20,7 @@ import javax.sql.DataSource;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 
 @WebServlet("/customer")
 public class CustomerController extends HttpServlet {
@@ -65,6 +66,36 @@ public class CustomerController extends HttpServlet {
         }catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        String id = req.getParameter("tel");
+
+        if(id!=null){
+            try(var writer = resp.getWriter()){
+                CustomerDTO customerDTO = customerBO.getCustomer(id, connection);
+                resp.setContentType("application/json");
+                Jsonb jsonb = JsonbBuilder.create();
+                jsonb.toJson(customerDTO,writer);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
+        }else{
+            try(var writer = resp.getWriter()){
+                List<CustomerDTO> customerDTOList = customerBO.getAllCustomers(connection);
+                resp.setContentType("application/json");
+                Jsonb jsonb = JsonbBuilder.create();
+                jsonb.toJson(customerDTOList,writer);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
+        }
+
+
     }
 
     @Override
