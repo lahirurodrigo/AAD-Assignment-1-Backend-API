@@ -11,4 +11,6 @@ public interface ItemBO {
     ItemDTO getItem(String id, Connection connection);
 
     List<ItemDTO> getAllItems(Connection connection);
+
+    boolean updateProduct(ItemDTO itemDTO, Connection connection);
 }

@@ -2,11 +2,9 @@ package lk.ijse.aadassignment1backendapi.dao.custom.impl;
 
 import lk.ijse.aadassignment1backendapi.dao.SQLUtil;
 import lk.ijse.aadassignment1backendapi.dao.custom.ItemDAO;
-import lk.ijse.aadassignment1backendapi.dto.ItemDTO;
 import lk.ijse.aadassignment1backendapi.entity.Item;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
@@ -67,5 +65,15 @@ public class ItemDAOImpl implements ItemDAO {
         }
 
         return items;
+    }
+
+    @Override
+    public boolean update(Item item, Connection connection) {
+        try{
+            return sqlUtil.execute( "UPDATE item SET name = ?,price = ?,qty = ? WHERE id = ?", connection,
+                    item.getName(),item.getPrice(),item.getQty(),item.getId());
+        }catch (Exception e){
+            return false;
+        }
     }
 }

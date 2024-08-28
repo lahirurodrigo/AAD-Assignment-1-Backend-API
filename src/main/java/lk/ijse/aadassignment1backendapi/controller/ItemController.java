@@ -93,6 +93,21 @@ public class ItemController extends HttpServlet {
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+        Jsonb jsonb = JsonbBuilder.create();
+        ItemDTO itemDTO = jsonb.fromJson(req.getReader(), ItemDTO.class);
+
+        try(var writer = resp.getWriter()){
+
+            boolean isUpdated = itemBO.updateProduct(itemDTO, connection);
+            if (isUpdated) {
+                writer.println("Update Successfully");
+            }else{
+                writer.println("Update Failed");
+            }
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     @Override

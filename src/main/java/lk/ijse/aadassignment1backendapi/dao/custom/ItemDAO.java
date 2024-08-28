@@ -11,4 +11,6 @@ public interface ItemDAO {
     Item get(String id, Connection connection);
 
     List<Item> getAll(Connection connection);
+
+    boolean update(Item item, Connection connection);
 }

@@ -51,4 +51,14 @@ public class ItemBOImpl implements ItemBO {
         }
         return itemDTOList;
     }
+
+    @Override
+    public boolean updateProduct(ItemDTO itemDTO, Connection connection) {
+        return itemDAO.update(new Item(
+                itemDTO.getId(),
+                itemDTO.getName(),
+                itemDTO.getPrice(),
+                itemDTO.getQty()
+        ), connection);
+    }
 }
