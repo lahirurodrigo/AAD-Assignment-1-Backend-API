@@ -13,4 +13,6 @@ public interface ItemBO {
     List<ItemDTO> getAllItems(Connection connection);
 
     boolean updateProduct(ItemDTO itemDTO, Connection connection);
+
+    boolean deleteItem(String id, Connection connection);
 }

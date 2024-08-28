@@ -76,4 +76,13 @@ public class ItemDAOImpl implements ItemDAO {
             return false;
         }
     }
+
+    @Override
+    public boolean delete(String id, Connection connection) {
+        try{
+            return sqlUtil.execute("DELETE FROM item WHERE id = ?", connection, id);
+        }catch (Exception e){
+            return false;
+        }
+    }
 }

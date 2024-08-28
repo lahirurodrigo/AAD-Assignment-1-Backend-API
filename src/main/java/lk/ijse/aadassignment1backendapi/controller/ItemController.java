@@ -112,7 +112,21 @@ public class ItemController extends HttpServlet {
 
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String id = req.getParameter("id");
 
+        try(var writer = resp.getWriter()){
+
+            boolean isDelete = itemBO.deleteItem(id, connection);
+
+            if (isDelete) {
+                writer.println("Delete Successfully");
+            }else{
+                writer.println("Delete Failed");
+            }
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
 
