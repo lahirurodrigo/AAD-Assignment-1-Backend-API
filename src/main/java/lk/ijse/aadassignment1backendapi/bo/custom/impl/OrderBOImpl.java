@@ -7,13 +7,14 @@ import lk.ijse.aadassignment1backendapi.dto.OrderDTO;
 import lk.ijse.aadassignment1backendapi.entity.Order;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 
 public class OrderBOImpl implements OrderBO {
 
     OrderDAO orderDAO = new OrderDAOImpl();
 
     @Override
-    public boolean saveOrder(OrderDTO orderDto, Connection connection) {
+    public boolean saveOrder(OrderDTO orderDto, Connection connection) throws SQLException {
         return orderDAO.save(new Order(
                 orderDto.getOrderId(),
                 orderDto.getCusId(),

@@ -26,6 +26,11 @@ public class CORSFilter extends HttpFilter {
             res.setHeader("Access-Control-Allow-Credentials", "true");
         }
 
+        if ("OPTIONS".equalsIgnoreCase(req.getMethod())) {
+            res.setStatus(HttpServletResponse.SC_OK);
+            return;
+        }
+
         chain.doFilter(req, res);
     }
 }

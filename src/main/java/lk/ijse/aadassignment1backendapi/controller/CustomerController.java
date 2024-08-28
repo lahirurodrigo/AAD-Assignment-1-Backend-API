@@ -33,7 +33,6 @@ public class CustomerController extends HttpServlet {
     public void init() throws ServletException {
         try {
 
-            logger.info("Initializing StudentController");
             var ctx = new InitialContext();
             DataSource pool = (DataSource) ctx.lookup("java:comp/env/jdbc/mh-grocery-pos");
             this.connection = pool.getConnection();
