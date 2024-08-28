@@ -12,4 +12,6 @@ public interface CustomerBO extends SuperBO {
     CustomerDTO getCustomer(String id, Connection connection);
 
     List<CustomerDTO> getAllCustomers(Connection connection);
+
+    boolean updateCustomer(CustomerDTO customerDTO, Connection connection);
 }

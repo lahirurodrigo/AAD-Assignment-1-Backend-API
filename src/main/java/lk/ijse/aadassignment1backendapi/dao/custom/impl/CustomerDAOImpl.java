@@ -78,4 +78,14 @@ public class CustomerDAOImpl implements CustomerDAO {
         return customers;
 
     }
+
+    @Override
+    public boolean update(Customer customer, Connection connection) {
+        try{
+            return sqlUtil.execute( "UPDATE customer SET name = ?,address = ?,email = ? WHERE id = ?", connection,
+                    customer.getName(),customer.getAddress(),customer.getEmail(),customer.getId());
+        }catch (Exception e){
+            return false;
+        }
+    }
 }

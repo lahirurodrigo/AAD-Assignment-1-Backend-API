@@ -11,4 +11,6 @@ public interface CustomerDAO {
     Customer get(String id, Connection connection);
 
     List<Customer> getAll(Connection connection);
+
+    boolean update(Customer customer, Connection connection);
 }

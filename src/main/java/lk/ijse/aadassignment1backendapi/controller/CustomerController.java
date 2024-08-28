@@ -99,6 +99,26 @@ public class CustomerController extends HttpServlet {
     }
 
     @Override
+    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        Jsonb jsonb = JsonbBuilder.create();
+        CustomerDTO customerDTO= jsonb.fromJson(req.getReader(), CustomerDTO.class);
+
+        try(var writer = resp.getWriter()){
+
+            boolean isUpdated = customerBO.updateCustomer(customerDTO, connection);
+            if (isUpdated) {
+                writer.println("Update Successfully");
+            }else{
+                writer.println("Update Failed");
+            }
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    @Override
     public void destroy() {
         try {
             if (connection != null && !connection.isClosed()) {
