@@ -29,7 +29,7 @@ public class ItemController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        // Handle CREATE operation
+
     }
 
     @Override
@@ -39,12 +39,12 @@ public class ItemController extends HttpServlet {
 
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        // Handle UPDATE operation
+
     }
 
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        // Handle DELETE operation
+
     }
 
 
