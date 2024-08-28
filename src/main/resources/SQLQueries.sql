@@ -2,7 +2,7 @@ create table customer(
                          id int(10)primary key,
                          name varchar(100)not null,
                          address varchar(100)not null,
-                         tel varchar(10)not null
+                         email varchar(100)not null
 );
 
 create table item(
