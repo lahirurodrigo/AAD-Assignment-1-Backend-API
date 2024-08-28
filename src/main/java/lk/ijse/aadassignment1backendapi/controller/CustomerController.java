@@ -119,6 +119,25 @@ public class CustomerController extends HttpServlet {
     }
 
     @Override
+    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String id = req.getParameter("tel");
+
+        try(var writer = resp.getWriter()){
+
+            boolean isDelete = customerBO.deleteCustomer(id, connection);
+
+            if (isDelete) {
+                writer.println("Delete Successfully");
+            }else{
+                writer.println("Delete Failed");
+            }
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    @Override
     public void destroy() {
         try {
             if (connection != null && !connection.isClosed()) {

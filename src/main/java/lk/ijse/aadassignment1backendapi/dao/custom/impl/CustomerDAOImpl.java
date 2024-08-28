@@ -88,4 +88,13 @@ public class CustomerDAOImpl implements CustomerDAO {
             return false;
         }
     }
+
+    @Override
+    public boolean delete(String id, Connection connection) {
+        try{
+            return sqlUtil.execute("DELETE FROM customer WHERE id = ?", connection, id);
+        }catch (Exception e){
+            return false;
+        }
+    }
 }

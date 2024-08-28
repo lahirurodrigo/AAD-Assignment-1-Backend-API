@@ -69,4 +69,9 @@ public class CustomerBOImpl implements CustomerBO {
                 customerDTO.getEmail()
         ), connection);
     }
+
+    @Override
+    public boolean deleteCustomer(String id, Connection connection) {
+        return customerDAO.delete(id, connection);
+    }
 }
