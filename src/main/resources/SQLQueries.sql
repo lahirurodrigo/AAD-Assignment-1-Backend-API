@@ -1,5 +1,5 @@
 create table customer(
-                         id varchar(100)primary key,
+                         id int(10)primary key,
                          name varchar(100)not null,
                          address varchar(100)not null,
                          tel varchar(10)not null
@@ -14,7 +14,7 @@ create table item(
 
 create table orders(
                        id varchar(100)primary key,
-                       cusId varchar(100)not null,
+                       cusId int(10)not null,
                        date date not null,
                        foreign key(cusId)references customer(id)
                            on update cascade on delete cascade
