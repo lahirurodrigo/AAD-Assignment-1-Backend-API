@@ -17,6 +17,7 @@ import javax.sql.DataSource;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 
 @WebServlet("/item")
 public class ItemController extends HttpServlet {
@@ -61,7 +62,32 @@ public class ItemController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        // Handle READ operation
+
+        String id = req.getParameter("id");
+
+        if(id!=null){
+            try(var writer = resp.getWriter()){
+                ItemDTO itemDTO = itemBO.getItem(id, connection);
+                resp.setContentType("application/json");
+                Jsonb jsonb = JsonbBuilder.create();
+                jsonb.toJson(itemDTO,writer);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
+        }else{
+            try(var writer = resp.getWriter()){
+                List<ItemDTO> itemDTOList = itemBO.getAllItems(connection);
+                resp.setContentType("application/json");
+                Jsonb jsonb = JsonbBuilder.create();
+                jsonb.toJson(itemDTOList,writer);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
+        }
+
+
     }
 
     @Override

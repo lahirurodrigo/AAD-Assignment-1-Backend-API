@@ -7,6 +7,8 @@ import lk.ijse.aadassignment1backendapi.dto.ItemDTO;
 import lk.ijse.aadassignment1backendapi.entity.Item;
 
 import java.sql.Connection;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ItemBOImpl implements ItemBO {
 
@@ -20,5 +22,33 @@ public class ItemBOImpl implements ItemBO {
                 itemDTO.getPrice(),
                 itemDTO.getQty()
         ), connection);
+    }
+
+    @Override
+    public ItemDTO getItem(String id, Connection connection) {
+        Item item = itemDAO.get(id, connection);
+        return new ItemDTO(
+                item.getId(),
+                item.getName(),
+                item.getPrice(),
+                item.getQty()
+        );
+    }
+
+    @Override
+    public List<ItemDTO> getAllItems(Connection connection) {
+        List<Item> itemList =  itemDAO.getAll(connection);
+        List<ItemDTO> itemDTOList = new ArrayList<>();
+
+        for ( Item item : itemList) {
+            itemDTOList.add(new ItemDTO(
+                    item.getId(),
+                    item.getName(),
+                    item.getPrice(),
+                    item.getQty()
+            ));
+
+        }
+        return itemDTOList;
     }
 }
