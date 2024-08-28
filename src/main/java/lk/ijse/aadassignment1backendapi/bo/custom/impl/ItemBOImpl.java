@@ -66,4 +66,14 @@ public class ItemBOImpl implements ItemBO {
     public boolean deleteItem(String id, Connection connection) {
         return itemDAO.delete(id, connection);
     }
+
+    @Override
+    public boolean updateItemQty(ItemDTO productDto, Connection connection) {
+        return itemDAO.updateItemQty(new Item(
+                productDto.getId(),
+                productDto.getName(),
+                productDto.getPrice(),
+                productDto.getQty()
+        ), connection);
+    }
 }

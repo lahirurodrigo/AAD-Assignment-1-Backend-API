@@ -15,4 +15,6 @@ public interface ItemDAO {
     boolean update(Item item, Connection connection);
 
     boolean delete(String id, Connection connection);
+
+    boolean updateItemQty(Item item, Connection connection);
 }

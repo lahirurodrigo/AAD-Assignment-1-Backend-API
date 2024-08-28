@@ -85,4 +85,14 @@ public class ItemDAOImpl implements ItemDAO {
             return false;
         }
     }
+
+    @Override
+    public boolean updateItemQty(Item item, Connection connection) {
+        try{
+            return sqlUtil.execute("UPDATE product SET qty = qty - ? WHERE id = ? ", connection,
+                    item.getQty(),item.getId());
+        }catch (Exception e){
+            return false;
+        }
+    }
 }
